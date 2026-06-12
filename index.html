@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Aleasha Claudette Pena</title>
+	<meta name="description" content="">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Caprasimo" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+	<style>
+		.navbar-custom {
+			background: rgba(0,0,0,0.55);
+			-webkit-backdrop-filter: blur(8px) saturate(1.1);
+			backdrop-filter: blur(8px) saturate(1.1);
+			box-shadow: 0 12px 30px rgba(0,0,0,0.55), inset 0 -2px 6px rgba(255,255,255,0.03);
+			border-bottom: 1px solid rgba(255,255,255,0.04);
+			transform: translateZ(0);
+		}
+		.navbar-custom .navbar-brand,
+		.navbar-custom .nav-link { color: #e6ffe9; }
+		.navbar-custom .nav-link.active { color: #fff; }
+		.navbar-custom .navbar-toggler { border-color: rgba(255,255,255,0.2); }
+		.navbar-custom .navbar-toggler-icon { filter: invert(1); }
+
+		.footer-rainbow {
+			background: rgba(0,0,0,0.45);
+			-webkit-backdrop-filter: blur(10px) saturate(1.1);
+			backdrop-filter: blur(10px) saturate(1.1);
+			box-shadow: 0 -12px 30px rgba(0,0,0,0.55);
+			border-top: 1px solid rgba(255,255,255,0.04);
+		}
+
+		.profile-avatar { width: 320px; height: 320px; border-radius: 50%; object-fit: cover; border: 6px solid #000000; position: relative; z-index: 1; box-shadow: 0 0 28px rgba(40,255,140,0.08); }
+		#profile-name { display: block; margin-top: 12px; font-size: 1.25rem; }
+		.avatar-wrap { display: inline-block; position: relative; }
+		.avatar-wrap::before { content: ""; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: calc(100% + 48px); height: calc(100% + 48px); border-radius: 50%; background: radial-gradient(circle, rgba(30,220,120,0.18), rgba(30,220,120,0)); filter: blur(18px); z-index: 0; animation: glowPulse 3.6s ease-in-out infinite; }
+		.avatar-wrap > img { position: relative; z-index: 1; }
+		@keyframes glowPulse { 0% { transform: translate(-50%, -50%) scale(1); opacity: 0.9 } 50% { transform: translate(-50%, -50%) scale(1.04); opacity: 1 } 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.9 } }
+
+		/* Make all page text white for readability on rainbow background */
+		html, body { height: 100%; }
+		body { font-family: 'Caprasimo', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; color: #ffffff; display: flex; flex-direction: column; min-height: 100vh; cursor: url("assets/orchid-cursor.png") 32 32, auto; }
+		main#app { flex: 1 0 auto; }
+		footer { flex-shrink: 0; }
+		a, a:visited { color: #ffffff; }
+		a:hover, a:focus { color: #ffffff; text-decoration: underline; }
+		.text-muted { color: rgba(255,255,255,0.9) !important; }
+
+		/* Animated rainbow background for the whole page */
+		/* Lava-lamp style animated blobs for a chill vibe */
+		body.rainbow-full { background: #0e0e10; }
+		.lava-container { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+		.blob {
+			position: absolute;
+			border-radius: 50%;
+			filter: blur(140px);
+			opacity: 0.85;
+			mix-blend-mode: screen;
+			pointer-events: none;
+			will-change: transform;
+		}
+
+		/* green-only glowy blobs for a frosty black aesthetic */
+		.blob.b1 { width: 44vmax; height: 44vmax; left: -12vmin; top: -18vmin; background: radial-gradient(circle at 30% 30%, rgba(30,220,120,0.94) 0%, rgba(18,160,100,0.86) 40%, rgba(18,160,100,0) 72%); box-shadow: 0 0 160px rgba(18,160,100,0.28); animation: float1 14s ease-in-out infinite; }
+		.blob.b2 { width: 40vmax; height: 40vmax; right: -10vmin; top: 6vmin; background: radial-gradient(circle at 60% 60%, rgba(24,255,150,0.94) 0%, rgba(18,200,120,0.86) 45%, rgba(18,200,120,0) 72%); box-shadow: 0 0 160px rgba(18,200,120,0.32); animation: float2 16s ease-in-out infinite; }
+		.blob.b3 { width: 46vmax; height: 46vmax; left: 10vmin; bottom: -18vmin; background: radial-gradient(circle at 40% 60%, rgba(20,240,130,0.94) 0%, rgba(20,200,115,0.86) 35%, rgba(20,200,115,0) 74%); box-shadow: 0 0 180px rgba(20,200,115,0.30); animation: float3 18s ease-in-out infinite; }
+		.blob.b4 { width: 36vmax; height: 36vmax; left: 20vmin; top: -8vmin; background: radial-gradient(circle at 40% 40%, rgba(24,255,140,0.92) 0%, rgba(18,200,120,0.8) 45%, rgba(18,200,120,0) 76%); box-shadow: 0 0 140px rgba(18,200,120,0.28); animation: float4 12s ease-in-out infinite; }
+		.blob.b5 { width: 42vmax; height: 42vmax; right: 8vmin; bottom: -10vmin; background: radial-gradient(circle at 50% 50%, rgba(18,220,120,0.94) 0%, rgba(18,170,100,0.86) 40%, rgba(18,170,100,0) 74%); box-shadow: 0 0 200px rgba(18,170,100,0.30); animation: float5 20s ease-in-out infinite; }
+		.blob.b6 { width: 56vmax; height: 40vmax; left: 50%; transform: translateX(-50%); bottom: -32vmin; background: radial-gradient(circle at 50% 60%, rgba(18,200,120,0.96) 0%, rgba(10,140,80,0.9) 45%, rgba(10,140,80,0) 78%); box-shadow: 0 0 260px rgba(10,140,80,0.34); animation: float6 20s ease-in-out infinite; opacity: 0.9; filter: blur(160px); }
+
+		@keyframes float1 {
+			0% { transform: translate(0,0) scale(1); }
+			25% { transform: translate(3vw, 8vw) scale(1.04); }
+			50% { transform: translate(0,18vw) scale(1.07); }
+			75% { transform: translate(-3vw, 8vw) scale(1.03); }
+			100% { transform: translate(0,0) scale(1); }
+		}
+		@keyframes float2 {
+			0% { transform: translate(0,0) scale(1); }
+			25% { transform: translate(-3vw, 6vw) scale(1.03); }
+			50% { transform: translate(0,16vw) scale(1.05); }
+			75% { transform: translate(3vw, 6vw) scale(1.02); }
+			100% { transform: translate(0,0) scale(1); }
+		}
+		@keyframes float3 {
+			0% { transform: translate(0,0) scale(1); }
+			25% { transform: translate(3vw, 10vw) scale(1.04); }
+			50% { transform: translate(0,-20vw) scale(1.07); }
+			75% { transform: translate(-3vw, 10vw) scale(1.03); }
+			100% { transform: translate(0,0) scale(1); }
+		}
+		@keyframes float4 {
+			0% { transform: translate(0,0) scale(1); }
+			25% { transform: translate(2vw, -8vw) scale(1.03); }
+			50% { transform: translate(0,14vw) scale(1.05); }
+			75% { transform: translate(-2vw, -6vw) scale(1.02); }
+			100% { transform: translate(0,0) scale(1); }
+		}
+		@keyframes float5 {
+			0% { transform: translate(0,0) scale(1); }
+			25% { transform: translate(-3vw, 6vw) scale(1.03); }
+			50% { transform: translate(0,-12vw) scale(1.05); }
+			75% { transform: translate(3vw, 6vw) scale(1.02); }
+			100% { transform: translate(0,0) scale(1); }
+		}
+		@keyframes float6 {
+			0% { transform: translate(0,0) scale(1); }
+			25% { transform: translate(0,8vw) scale(1.03); }
+			50% { transform: translate(0,-28vw) scale(1.08); }
+			75% { transform: translate(0,8vw) scale(1.03); }
+			100% { transform: translate(0,0) scale(1); }
+		}
+		@keyframes float4 {
+			0% { transform: translate(0,0) scale(1); }
+			25% { transform: translate(5vw, -5vw) scale(1.02); }
+			50% { transform: translate(-6vw, 6vw) scale(1.03); }
+			75% { transform: translate(3vw, -3vw) scale(1.01); }
+			100% { transform: translate(0,0) scale(1); }
+		}
+		@keyframes float5 {
+			0% { transform: translate(0,0) scale(1); }
+			25% { transform: translate(-4vw, 4vw) scale(1.02); }
+			50% { transform: translate(6vw, -5vw) scale(1.03); }
+			75% { transform: translate(-5vw, 3vw) scale(1.01); }
+			100% { transform: translate(0,0) scale(1); }
+		}
+
+		/* Responsive tweaks and cursor glow */
+		@media (max-width: 992px) {
+		  .profile-avatar { width: 220px; height: 220px; }
+		  .avatar-wrap::before { width: calc(100% + 28px); height: calc(100% + 28px); filter: blur(14px); }
+		  .lava-container .blob { filter: blur(110px); opacity: 0.75; }
+		  .blob.b6 { display: none; }
+		}
+		@media (max-width: 576px) {
+		  .profile-avatar { width: 140px; height: 140px; }
+		  .avatar-wrap::before { width: calc(100% + 18px); height: calc(100% + 18px); filter: blur(10px); }
+		  .lava-container .blob { filter: blur(80px); opacity: 0.6; }
+		  .blob.b3, .blob.b5 { display: none; }
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+		  .lava-container .blob { animation: none !important; transition: none !important; opacity: 0.55 !important; }
+		}
+
+		/* Cursor-following green glow — smaller with a bright core (cursor is the light) */
+		.cursor-glow {
+		  position: fixed;
+		  left: 0; top: 0;
+		  width: 120px; height: 120px; border-radius: 50%;
+		  pointer-events: none;
+		  transform: translate(-50%,-50%) scale(1);
+		  background: radial-gradient(circle at 50% 40%, rgba(46,255,150,0.98) 0%, rgba(46,255,150,0.55) 10%, rgba(46,255,150,0.18) 22%, rgba(46,255,150,0) 50%);
+		  mix-blend-mode: screen; opacity: 0; transition: opacity 120ms linear;
+		  will-change: transform, opacity; z-index: 9999; pointer-events: none;
+		}
+
+		/* Hide the animated glow when using a custom image cursor so it doesn't obscure it */
+		.cursor-glow { display: none !important; }
+
+		/* Apply the local orchid cursor globally (use !important so it isn't overridden) */
+		html, body, * { cursor: url("assets/orchid-cursor.png") 0 0, auto !important; }
+		.cursor-glow::after {
+		  content: '';
+		  position: absolute;
+		  left: 50%; top: 50%; transform: translate(-50%, -50%);
+		  width: 14px; height: 14px; border-radius: 50%; background: #ffffff;
+		  box-shadow: 0 0 18px rgba(46,255,150,0.98), 0 0 56px rgba(46,255,150,0.28);
+		}
+
+		/* Ensure content sits above the blobs */
+		nav, main, footer { position: relative; z-index: 1; }
+
+		/* Force all visible text to solid white and remove neon/glow text effects */
+		body, body * { color: #ffffff !important; text-shadow: none !important; }
+
+		/* Use resume typography site-wide: Inter for body, Playfair Display for headings */
+		body { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important; }
+		h1, h2, h3, h4, h5, h6 { font-family: 'Playfair Display', 'Inter', serif !important; }
+
+		/* Resume section styling: cleaner, more professional font */
+		.resume-rainbow .resume-card { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; color: #ffffff; background: rgba(0,0,0,0.18); padding: 1.25rem; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.5); max-width: 920px; margin: 0 auto; box-sizing: border-box; }
+		.about-rainbow .resume-card, .resume-card { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; color: #ffffff; background: rgba(0,0,0,0.18); padding: 1.25rem; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.5); max-width: 920px; margin: 0 auto; box-sizing: border-box; }
+
+		/* Responsive typography for resume card */
+		.resume-card p { font-size: clamp(0.95rem, 1.4vw, 1.05rem); line-height: 1.6; margin-bottom: 0.85rem; }
+		.resume-card h3 { font-size: clamp(1.1rem, 2.2vw, 1.4rem); }
+		.resume-card h4 { font-size: clamp(0.98rem, 1.4vw, 1.12rem); margin-top: .75rem; }
+		.resume-card ul { padding-left: 1.1rem; }
+
+		/* Make the header block and avatar wrap responsively */
+		.resume-card .d-flex { flex-wrap: wrap; }
+		.resume-card .d-flex > img { flex: 0 0 auto; }
+		.resume-card .d-flex > div { flex: 1 1 420px; min-width: 220px; }
+
+		/* Ensure the two-column experience/skills stack cleanly on small screens */
+		@media (max-width: 992px) {
+			.resume-card { padding: 1rem; }
+			.resume-card .d-flex { flex-direction: column; align-items: flex-start; gap: .75rem; }
+			.resume-rainbow .profile-avatar { width: 120px; height: 120px; }
+			.about-rainbow .profile-avatar, #about-avatar { width: 180px; height: 180px; }
+			.resume-card .row { gap: .75rem; }
+		}
+
+		@media (min-width: 1200px) {
+			/* wider layouts get a slightly larger max width for balanced text measure */
+			.resume-card { max-width: 1100px; }
+		}
+		.resume-rainbow h2 { font-family: 'Inter', system-ui, sans-serif; font-weight: 700; margin-bottom: .75rem; }
+		.resume-rainbow h3, .resume-rainbow h4 { color: #ffd6ea; font-weight: 600; }
+		.resume-rainbow a { color: #fff; text-decoration: underline; }
+		.resume-rainbow .profile-avatar { width: 140px; height: 140px; }
+		.about-rainbow .profile-avatar, #about-avatar { width: 220px; height: 220px; border-radius: 50%; border: 6px solid #000; box-shadow: 0 0 36px rgba(40,255,140,0.08); object-fit: cover; }
+		.resume-rainbow .contact { color: rgba(255,255,255,0.9); }
+
+		/* Home welcome neon/pink styling and abstract shapes */
+		@font-face {
+			font-family: 'Retro Mother';
+			src: url('fonts/RetroMother.woff2') format('woff2'),
+			     url('fonts/RetroMother.ttf') format('truetype');
+			font-weight: 400 800;
+			font-style: normal;
+			font-display: swap;
+		}
+
+		.home-welcome { text-align: center; color: #bfffe6; }
+		.home-welcome h1 { font-family: 'Playfair Display', 'Caprasimo', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-size: clamp(2.2rem, 6vw, 4.4rem); font-weight: 700; margin-bottom: .25rem; color: #6eff9a; letter-spacing: .02em; text-shadow: 0 4px 18px rgba(46,255,150,0.06); }
+		.home-welcome .lead { font-size: 1.125rem; font-weight: 500; color: rgba(255,255,255,0.9); text-shadow: none; margin-top: 1.25rem; }
+		.neon-link { display: inline-block; margin: 0 .4rem; padding: .45rem 1rem; border-radius: .45rem; color: #e9fff0; background: linear-gradient(180deg, rgba(24,220,120,0.04), rgba(24,220,120,0.02)); border: 1px solid rgba(24,220,120,0.08); text-decoration: none; font-weight: 700; box-shadow: 0 6px 12px rgba(0,0,0,0.25), inset 0 -2px 6px rgba(255,255,255,0.02); text-shadow: none; transition: transform .15s ease, box-shadow .15s ease; }
+		.neon-link:hover { transform: translateY(-3px); box-shadow: 0 12px 22px rgba(0,0,0,0.28); }
+
+		/* Align link columns so buttons sit on same baseline while icons stay above */
+		.home-links-row { display: flex; justify-content: center; gap: 1rem; align-items: flex-end; }
+
+		.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48; display: inline-block; vertical-align: middle; color: #bfffe6; }
+		.material-symbols-outlined.md-48 { font-size: 48px; line-height: 1; display: block; margin-bottom: 6px; }
+		.material-symbols-outlined.md-40 { font-size: 40px; line-height: 1; display: block; margin-bottom: 6px; }
+
+		/* Large cursive navbar title */
+		.navbar-brand {
+			font-family: 'Dancing Script', cursive !important;
+			font-size: clamp(1.8rem, 5vw, 3.2rem) !important;
+			font-weight: 700 !important;
+			letter-spacing: 0.02em !important;
+			color: #d9ffe6 !important;
+			text-shadow: 0 6px 28px rgba(40,255,140,0.09) !important;
+		}
+
+
+	</style>
+</head>
+<body class="rainbow-full">
+	<div class="lava-container" aria-hidden="true">
+		<div class="blob b1"></div>
+		<div class="blob b2"></div>
+		<div class="blob b3"></div>
+		<div class="blob b4"></div>
+		<div class="blob b5"></div>
+		<div class="blob b6"></div>
+	</div>
+	<nav class="navbar navbar-expand-lg navbar-custom">
+		<div class="container">
+			<a class="navbar-brand" href="#">Aleasha Claudette Pena</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav ms-auto">
+						<li class="nav-item"><a class="nav-link active" aria-current="page" href="#" data-target="home">Home</a></li>
+						<li class="nav-item"><a class="nav-link" href="#" data-target="about">About Me</a></li>
+						<li class="nav-item"><a class="nav-link" href="#" data-target="resume">Resume</a></li>
+					</ul>
+			</div>
+		</div>
+	</nav>
+
+	<main id="app" class="container py-4">
+		<!-- Add your assignment content here -->
+		<section id="home" class="section">
+			<div class="home-welcome">
+				<div class="resume-card" style="text-align:left;">
+					<p>Welcome to my site! Here you’ll find a quick introduction to who I am, along with an About Me page and my Resume. Feel free to explore and learn more about my journey.</p>
+				</div>
+			</div>
+		</section>
+		<section id="about" class="section d-none mt-4 text-left about-rainbow">
+			<h2>About Me</h2>
+			<div id="profile" class="resume-card">
+				<p>I’m a DevOps student who is organized, curious, and detail‑focused, with a strong motivation to keep learning and improving. I enjoy solving problems, communicating clearly, and planning effectively to keep projects moving smoothly. Right now, I’m focused on building my technical skills, growing my hands‑on experience, and landing an internship where I can contribute and continue developing in the DevOps field. Outside of tech, I love creating content and listening to podcasts on everything from theology and politics to tech, entertainment, and finance.</p>
+			</div>
+			<div class="d-flex justify-content-center mt-3">
+				<img src="https://media.licdn.com/dms/image/v2/D5603AQHHTbu4zPdd-w/profile-displayphoto-shrink_400_400/B56Zbd1ZYzG4Ag-/0/1747478485310?e=1782950400&v=beta&t=p4bAunnArc1nL2patPgC9WY7wc0duP4_fha63ZunTh0" id="about-avatar" class="profile-avatar" alt="Aleasha" onerror="this.onerror=null;this.src='assets/aleasha-linkedin.jpg'">
+			</div>
+		</section>
+		<section id="resume" class="section d-none mt-4 text-center resume-rainbow">
+			<h2>Resume</h2>
+			<div class="resume-card" style="text-align:left;">
+					<div class="d-flex align-items-start gap-3">
+					<img id="linkedin-avatar" src="https://media.licdn.com/dms/image/v2/D5603AQHHTbu4zPdd-w/profile-displayphoto-shrink_400_400/B56Zbd1ZYzG4Ag-/0/1747478485310?e=1782950400&v=beta&t=p4bAunnArc1nL2patPgC9WY7wc0duP4_fha63ZunTh0" onerror="this.onerror=null;this.src='https://avatars.githubusercontent.com/u/277478850?v=4'" alt="Aleasha Pena profile" class="profile-avatar me-3">
+						<div>
+							<h3 class="mb-0">ALEASHA CLAUDETTE PENA</h3>
+							<div class="contact mb-2">Spokane Valley, WA · <a href="mailto:aleasha.pena@outlook.com">aleasha.pena@outlook.com</a> · <a href="https://www.linkedin.com/in/aleashapena/" target="_blank" rel="noopener">linkedin.com/in/aleashapena</a></div>
+						</div>
+				</div>
+				<hr style="border-color: rgba(255,255,255,0.06);">
+				<h4>Professional Summary</h4>
+				<p>Customer-focused professional with 5+ years of experience in sales, guest services, and high-volume customer support. Strong communication, problem solving, and relationship building skills. Currently pursuing a BAS in DevOps, bringing strong technical aptitude and ability to quickly learn new systems. Seeking a Leasing Professional role to leverage customer service expertise, organizational skills and technical proficiency.</p>
+				<div class="row">
+					<div class="col-md-6">
+						<h4>Skills</h4>
+						<ul>
+							<li>Customer Service</li>
+							<li>Resident Relations</li>
+							<li>Sales and Upselling</li>
+							<li>Tour Presentation</li>
+							<li>Application Processing</li>
+							<li>Conflict Resolution</li>
+							<li>Professional Communication</li>
+							<li>Time Management</li>
+							<li>Attention to Detail</li>
+							<li>Microsoft Office</li>
+							<li>Data Entry</li>
+							<li>CRM/Property Management Software (Yardi, Entrata, RealPage - willing to learn)</li>
+							<li>Basic Troubleshooting</li>
+							<li>Team Collaboration</li>
+							<li>Adaptability</li>
+							<li>Reliable and Self-Motivated</li>
+						</ul>
+					</div>
+					<div class="col-md-6">
+						<h4>Experience</h4>
+						<ul>
+							<li><strong>Student</strong> — Spokane Community College (Aug 2022 – Present)
+								<ul>
+									<li>Completing BAS in DevOps with strong technical learning ability.</li>
+									<li>Hands-on experience with AWS, Linux, Git/GitHub, Docker, and CI/CD tools.</li>
+									<li>Managed multiple projects and deadlines in a hybrid environment.</li>
+								</ul>
+							</li>
+							<li><strong>Founder and Content Creator</strong> — Freelance (Jan 2022 – Present)
+								<ul>
+									<li>Built and managed a Spokane-focused brand promoting local businesses and community engagement.</li>
+									<li>Collaborated with restaurants and partners to create promotional content.</li>
+									<li>Analyzed engagement metrics to improve performance and audience reach.</li>
+								</ul>
+							</li>
+							<li><strong>Customer Service Representative</strong> — Cambia Health Solutions (Jan 2021 – Dec 2021)
+								<ul>
+									<li>Handled 50–70 inbound calls daily while providing empathetic, accurate support.</li>
+									<li>Explained complex insurance information clearly to customers.</li>
+									<li>Identified recurring issues and recommended process improvements.</li>
+								</ul>
+							</li>
+							<li><strong>Beauty Advisor / Guest Services</strong> — Ulta Beauty (Jan 2019 – Dec 2020)
+								<ul>
+									<li>Delivered high-quality customer service in a fast-paced environment.</li>
+									<li>Educated customers on products, promotions, and services.</li>
+									<li>Balanced multitasking responsibilities while maintaining accuracy.</li>
+								</ul>
+							</li>
+							<li><strong>Sales Associate</strong> — Ace Hardware (Feb 2018 – Mar 2020)
+								<ul>
+									<li>Assisted customers with product selection using strong product knowledge.</li>
+									<li>Processed transactions accurately and efficiently.</li>
+									<li>Built rapport with customers to support repeat business.</li>
+								</ul>
+							</li>
+							<li><strong>Sales Associate</strong> — Spirit Halloween (Oct 2016 – Nov 2019)
+								<ul>
+									<li>Helped customers with sizing, product selection, and questions.</li>
+									<li>Resolved concerns quickly and professionally.</li>
+									<li>Adapted to changing store needs, including setup and teardown.</li>
+								</ul>
+							</li>
+							<li><strong>Sales Associate</strong> — Northern Quest Resort and Casino (Mar 2017 – Feb 2018)
+								<ul>
+									<li>Provided exceptional guest service with professionalism and empathy.</li>
+									<li>Handled cash and card transactions with accuracy.</li>
+									<li>Maintained a positive environment aligned with hospitality standards.</li>
+								</ul>
+							</li>
+							<li><strong>Sales Associate</strong> — Victoria’s Secret (Oct 2016 – Jan 2017)
+								<ul>
+									<li>Delivered excellent customer service during high-traffic seasons.</li>
+									<li>Supported merchandising and promotional displays.</li>
+									<li>Strengthened multitasking and communication skills.</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<h4 class="mt-3">Education</h4>
+				<ul>
+					<li><strong>Spokane Community College</strong> — Spokane, WA
+						<ul>
+							<li>Bachelor of Applied Science (BAS), DevOps — Expected toward the end of 2027</li>
+							<li>Associate of Applied Science (AAS), Cloud Computing — Completed Spring 2025</li>
+						</ul>
+					</li>
+					<li><strong>Central Valley High School</strong> — Spokane Valley, WA
+						<ul>
+							<li>High School Diploma — Graduated 2016</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</section>
+	</main>
+
+	<footer class="footer-rainbow text-white mt-5 py-3">
+		<div class="container text-center">
+			&copy; 2026 Aleasha Clark
+		</div>
+	</footer>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/js/bootstrap.bundle.min.js"></script>
+	<script>
+		async function loadGitHubProfile(profileUrl) {
+			const match = profileUrl.match(/github\.com\/([^\/\s]+)/i);
+			if (!match) return;
+			const username = match[1];
+			try {
+				const res = await fetch(`https://api.github.com/users/${username}`);
+				if (!res.ok) throw new Error(res.statusText);
+				const data = await res.json();
+				const loading = document.getElementById('profile-loading');
+				const content = document.getElementById('profile-content');
+				if (loading) loading.classList.add('d-none');
+				if (content) content.classList.remove('d-none');
+				const avatar = document.getElementById('profile-avatar');
+				const nameEl = document.getElementById('profile-name');
+				const bioEl = document.getElementById('profile-bio');
+				const linkEl = document.getElementById('profile-link');
+				if (avatar) avatar.src = data.avatar_url;
+				if (nameEl) nameEl.textContent = data.name || data.login;
+				if (bioEl) bioEl.textContent = data.bio || '';
+				if (linkEl) { linkEl.href = data.html_url; linkEl.textContent = 'View on GitHub'; }
+			} catch (err) {
+				console.error('Failed to load GitHub profile', err);
+			}
+		}
+
+		function showSection(id) {
+			document.querySelectorAll('main .section').forEach(s => s.classList.add('d-none'));
+			const el = document.getElementById(id);
+			if (el) el.classList.remove('d-none');
+			// update active link
+			document.querySelectorAll('.nav-link[data-target]').forEach(link => {
+				if (link.getAttribute('data-target') === id) {
+					link.classList.add('active');
+					link.setAttribute('aria-current','page');
+				} else {
+					link.classList.remove('active');
+					link.removeAttribute('aria-current');
+				}
+			});
+		}
+
+		document.addEventListener('DOMContentLoaded', () => {
+			// attach handlers
+			document.querySelectorAll('.nav-link[data-target]').forEach(link => {
+				link.addEventListener('click', e => {
+					e.preventDefault();
+					const target = link.getAttribute('data-target');
+					showSection(target);
+					// collapse navbar on small screens
+					const bsCollapse = document.querySelector('.navbar-collapse');
+					if (bsCollapse && bsCollapse.classList.contains('show')) {
+						new bootstrap.Collapse(bsCollapse).hide();
+					}
+				});
+			});
+			// show home by default
+			showSection('home');
+			// No automatic GitHub loading — About content is static
+		});
+	</script>
+	<script>
+	(function(){
+	  // disable on touch devices and respect reduced-motion
+	  if ('ontouchstart' in window) return;
+	  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+	  const glow = document.createElement('div');
+	  glow.className = 'cursor-glow';
+	  document.body.appendChild(glow);
+
+	  let mouseX = 0, mouseY = 0;
+	  let x = 0, y = 0;
+	  let visible = false;
+
+	  const lerp = (a,b,t) => a + (b - a) * t;
+
+	  let idleTimer;
+	  window.addEventListener('mousemove', (e) => {
+	    mouseX = e.clientX;
+	    mouseY = e.clientY;
+	    visible = true;
+	    glow.style.opacity = '1';
+	    clearTimeout(idleTimer);
+	    idleTimer = setTimeout(() => { visible = false; glow.style.opacity = '0'; }, 2200);
+	  });
+
+	  window.addEventListener('mouseleave', () => { visible = false; glow.style.opacity = '0'; });
+
+	  function animate(){
+	    x = lerp(x, mouseX, 0.18);
+	    y = lerp(y, mouseY, 0.18);
+	    glow.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%) scale(${visible ? 1 : 0.85})`;
+	    requestAnimationFrame(animate);
+	  }
+	  requestAnimationFrame(animate);
+	})();
+	</script>
+</body>
+</html>
+

@@ -32,3 +32,5 @@ jobs:
           push: true
           tags: aleashapena/dvop400-finalproject:latest
           platforms: linux/amd64,linux/arm64
+
+          #Trigger workflow 
